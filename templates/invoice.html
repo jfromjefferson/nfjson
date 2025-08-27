@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>NF {{ NFe.infNFe.ide.nNF }}-{{ NFe.infNFe.ide.serie }}</title>
+    <meta charset="utf-8">
+    <style>
+        @page  {
+            size: A4;
+            padding: 5px !important;
+            margin: 0 !important;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        body {
+            padding: 0 !important;
+            margin: 0 !important;
+            font-family: "Roboto", sans-serif;
+            color: #324147;
+        }
+
+        .wrapper-210x297 {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            background-color: #FFF;
+        }
+
+        h2 {
+            font-size: 15px;
+            line-height: 18px;
+            border-bottom: 3px solid #324147;
+        }
+
+        h3 {
+            font-size: 8px;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 11px;
+        }
+
+        .nowrap {
+            white-space: nowrap;
+        }
+
+        .float-left {
+            float: left;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        .clear-both {
+            clear: both;
+        }
+
+        hr {
+            margin: 3mm 0;
+            border: 1mm dotted #CCD0D1;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            text-align: left;
+            vertical-align: top;
+            overflow: hidden;
+        }
+
+        table th h3 {
+            font-weight: 700;
+        }
+
+        table.border-boxed > tbody > tr > th,
+        table.border-boxed > tbody > tr > td {
+            border: 2px solid #E4E6E7;
+        }
+
+        table.border-opened > tbody > tr > th,
+        table.border-opened > tbody > tr > td {
+            border: 2px solid #E4E6E7;
+            border-top: 0;
+        }
+
+        table.border-opened > tbody > tr > th:first-child,
+        table.border-opened > tbody > tr > td:first-child {
+            border-left: 0;
+        }
+
+        table.border-opened > tbody > tr > th:last-child,
+        table.border-opened > tbody > tr > td:last-child {
+            border-right: 0;
+        }
+
+        table.margin-bottom-medium {
+            margin-bottom: 3mm;
+        }
+
+        .padding-low > tbody > tr > th,
+        .padding-low > tbody > tr > td {
+            padding: 0.7mm 0.3mm;
+        }
+
+        .padding-medium > tbody > tr > th,
+        .padding-medium > tbody > tr > td {
+            padding: 0.7mm 0.5mm;
+        }
+
+        .padding-high > tbody > tr > th,
+        .padding-high > tbody > tr > td {
+            padding: 1.5mm 1.5mm;
+        }
+
+        .paragraph-bold p {
+            font-weight: 700;
+        }
+
+        td.company-info {
+            font-size: 0;
+            text-align: center;
+        }
+
+        td.company-info img {
+            width: 40mm;
+        }
+
+        td.invoice-info {
+            text-align: center;
+        }
+
+        td.invoice-info h2 {
+            display: inline-block;
+            margin-bottom: 0.5mm;
+            padding: 0 10px;
+            line-height: 26px;
+            color: #FFF;
+            border: 0;
+            background-color: #324147;
+        }
+
+        td.invoice-info p {
+            line-height: 12px;
+        }
+
+        td.invoice-info > div {
+            position: relative;
+            padding: 2mm 4mm;
+            text-align: left;
+        }
+
+        td.invoice-info > div div:nth-child(1) p {
+            font-size: 12px;
+            line-height: 14px;
+        }
+
+        td.invoice-info > div div:nth-child(2) p {
+            display: inline-block;
+            padding: 0 1mm;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 22px;
+            border: 3px solid #989FA2;
+            float: right;
+        }
+
+        td.invoice-key {
+            font-size: 0;
+            text-align: center;
+        }
+
+        td.invoice-key div {
+            margin-bottom: 2mm;
+        }
+
+        td.invoice-key img {
+            width: 100%;
+            height: auto;
+            margin: 1mm 0;
+        }
+
+        td.invoice-number {
+            padding: 1mm;
+            text-align: center;
+            vertical-align: middle;
+            border: 2px solid #324147;
+        }
+
+        td.invoice-number p {
+            font-size: 12px;
+        }
+
+        td.invoice-number p strong {
+            font-size: 16px;
+        }
+
+        table.tax-items th,
+        table.tax-items td {
+            /*padding: 1.5mm 0.5mm;*/
+        }
+
+        table.tax-items th h3 {
+            letter-spacing: -0.04em
+        }
+
+        table.tax-items td p {
+            font-size: 9px;
+            letter-spacing: -0.04em
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper-210x297">
+    {{ NFe.Id }}
+    <table class="border-boxed padding-high">
+        <tbody>
+        <tr>
+            <td colspan="2">
+                <p>Recebemos de <strong>{{ NFe.infNFe.emit.xNome }}</strong> os produtos constantes da Nota Fiscal
+                    Eletrônica indicada abaixo.</p>
+                <p>
+                    <strong>EMISSÃO:</strong>
+                    <span id="emissao">{{ NFe.infNFe.ide.dhEmi }}</span>
+                    | <strong>VALOR TOTAL:</strong>
+                    <span id="valor-total">R$ {{ NFe.infNFe.total.ICMSTot.vNF }}</span>
+                </p>
+            </td>
+            <td rowspan="2" width=20% class="invoice-number">
+                <p>NF-e</p>
+                <p><strong>Nº {{ NFe.infNFe.ide.nNF }}</strong></p>
+                <p><em>Série {{ NFe.infNFe.ide.serie }}</em></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h3>Data de recebimento</h3>
+                <p>&nbsp;</p>
+            </td>
+            <td>
+                <h3>Identificação e assinatura do recebedor</h3>
+                <p>&nbsp;</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <table class="border-boxed margin-bottom-medium padding-high">
+        <tbody>
+        <tr>
+            <td width="35%" class="company-info">
+                <p><strong class="emit-nome">{{ NFe.infNFe.emit.xNome }}</strong></p>
+                <p>{{ NFe.infNFe.emit.enderEmit.xLgr }}, {{ NFe.infNFe.emit.enderEmit.nro }}</p>
+                <p>{{ NFe.infNFe.emit.enderEmit.xCpl }} - {{ NFe.infNFe.emit.enderEmit.xBairro }}</p>
+                <p>
+                    <strong id="cep-emit">{{ NFe.infNFe.emit.enderEmit.CEP.text }}</strong>
+                    {{ NFe.infNFe.emit.enderEmit.xMun }}/{{ NFe.infNFe.emit.enderEmit.UF }}
+                </p>
+            </td>
+            <td width="20%" class="invoice-info">
+                <h2>DANFE</h2>
+                <p>Documento Auxiliar da<br>Nota Fiscal Eletrônica</p>
+                <div>
+                    <div class="float-left">
+                        <p><strong>0 - ENTRADA</strong></p>
+                        <p><strong>1 - SAÍDA</strong></p>
+                    </div>
+                    <div class="float-right">
+                        <p>{{ NFe.infNFe.ide.tpNF }}</p>
+                    </div>
+                    <div class="clear-both"></div>
+                </div>
+                <p><strong>Nº 123</strong></p>
+                <p><em>Série 123</em></p>
+                <p><em>Folha 1/1</em></p>
+            </td>
+            <td width="45%" class="invoice-key">
+                <div>
+                    <h3>Controle do Fisco</h3>
+                    <div style="height: 14mm; overflow: hidden">
+                    </div>
+                </div>
+                <div>
+                    <h3>Chave de acesso</h3>
+                    <p>
+                        <strong id="chave-acesso">
+                            invoice_key
+                        </strong>
+                    </p>
+                </div>
+                <div>
+                    <h3>Consulta de autenticidade no portal nacional da <span style="text-transform: none;">NF-e</span>
+                    </h3>
+                    <p>www.nfe.fazenda.gov.br/portal ou no site da Sefaz autorizadora</p>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="border-boxed margin-bottom-medium padding-medium paragraph-bold">
+        <tbody>
+        <tr>
+            <td colspan="6">
+                <h3>Natureza da operação</h3>
+                <p>{{ NFe.infNFe.ide.natOp }}</p>
+            </td>
+            <td colspan="6">
+                <h3>Protocolo de autorização de uso</h3>
+                <p>
+                    {{ protNFe.infProt.nProt }}
+                    {% if protNFe.infProt.dhRecbto %}
+                    {{ protNFe.infProt.dhRecbto }}
+                    {% endif %}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <h3>Inscrição Estadual</h3>
+                <p>{{ NFe.infNFe.emit.IE }}</p>
+            </td>
+            <td colspan="4">
+                <h3>Inscrição Estadual do Subst. Tribut.</h3>
+                <p>{{ NFe.infNFe.emit.IEST }}</p>
+            </td>
+            <td colspan="4">
+                <h3>CNPJ</h3>
+                <p id="cnpj-emit">{{ NFe.infNFe.emit.CNPJ.text }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <h3>Data de emissão</h3>
+                <p>{{ NFe.infNFe.ide.dhEmi }}</p>
+            </td>
+            <td colspan="4">
+                <h3>Data de saída</h3>
+                {% if NFe.infNFe.ide.dhSaiEnt %}
+                <p>{{ NFe.infNFe.ide.dhSaiEnt }}</p>
+                {% else %}
+                <p></p>
+                {% endif %}
+            </td>
+            <td colspan="4">
+                <h3>Hora de saída</h3>
+                {% if NFe.infNFe.ide.dhSaiEnt %}
+                <p>{{ NFe.infNFe.ide.dhSaiEnt }}</p>
+                {% else %}
+                <p></p>
+                {% endif %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Destinatário / Remetente</h2>
+    <table class="border-opened margin-bottom-medium padding-medium paragraph-bold">
+        <tbody>
+        <tr>
+            <td colspan="4">
+                <h3>Nome / Razão Social</h3>
+                <p class="dest-nome">{{ NFe.infNFe.dest.xNome }}</p>
+            </td>
+            <td colspan="2">
+                <h3>CNPJ / CPF</h3>
+                {% if NFe.infNFe.dest.CPF %}
+                <p id="cpf-dest">{{ NFe.infNFe.dest.CPF.text }}</p>
+                {% elif NFe.infNFe.dest.CNPJ %}
+                <p>{{ NFe.infNFe.dest.CNPJ.text|br_cnpj }}</p>
+                {% else %}
+                <p>&nbsp;</p>
+                {% endif %}
+            </td>
+            <td colspan="2">
+                <h3>Inscrição Estadual</h3>
+                <p>{{ NFe.infNFe.dest.IE }}</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <h3>Endereço</h3>
+                <p>
+                    endereço
+                </p>
+            </td>
+            <td colspan="2">
+                <h3>Bairro</h3>
+                <p>bairro</p>
+            </td>
+            <td colspan="2">
+                <h3>CEP</h3>
+                <p>
+                    CEP
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <h3>Município</h3>
+                <p>Cidade</p>
+            </td>
+            <td colspan="1">
+                <h3>UF</h3>
+                <p>Estado</p>
+            </td>
+            <td colspan="3">
+                <h3>Fone / Fax</h3>
+                <p id="fone-dest">Telefone</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Faturas</h2>
+    <table class="border-opened margin-bottom-medium padding-medium" id="bills">
+        <tbody>
+        <tr>
+            {% for item in NFe.infNFe.cobr %}
+            <td>
+                <p><strong>Núm.:</strong> <span>{{ item.dup.nDup }}</span></p>
+                <p><strong>Venc.:</strong> <span>{{ item.dup.dVenc}}</span></p>
+                <p><strong>Valor:</strong> <span class="valor-total">R$ <span>{{ item.dup.vDup }}</span></span></p>
+            </td>
+            {% endfor %}
+            {% for i in blank_bills_cols %}
+            <td>
+                <p><strong>Núm.:</strong> <span></span></p>
+                <p><strong>Venc.:</strong> <span></span></p>
+                <p><strong>Valor:</strong> <span></span></p>
+            </td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Cálculo do imposto</h2>
+    <table class="border-opened margin-bottom-medium padding-medium paragraph-bold">
+        <tbody>
+        <tr>
+            <td colspan="1">
+                <h3>Base cálculo ICMS</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vBC }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Valor ICMS</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vICMS }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Base cálc. ICMS S.T.</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vBCST}}</p>
+            </td>
+            <td colspan="1">
+                <h3>Valor ICMS S.T.</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vST }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Valor Importação</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vII }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Valor PIS</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vPIS }}</p>
+            </td>
+            <td colspan="2">
+                <h3>Valor total dos produtos</h3>
+                <p class="valor-total">{{ NFe.infNFe.total.ICMSTot.vProd}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                <h3>Valor frete</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vFrete }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Valor seguro</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vSeg }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Desconto</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vDesc }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Outras despesas</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vOutro }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Valor total IPI</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vIPI }}</p>
+            </td>
+            <td colspan="1">
+                <h3>Valor da Cofins</h3>
+                <p>{{ NFe.infNFe.total.ICMSTot.vCOFINS}}</p>
+            </td>
+            <td colspan="2">
+                <h3>Valor total da nota</h3>
+                <p class="valor-total">{{ NFe.infNFe.total.ICMSTot.vNF }}</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Transportador / Volumes transportados</h2>
+    <table class="border-opened margin-bottom-medium padding-medium paragraph-bold">
+        <tbody>
+        <tr>
+            <td colspan="3">
+                <h3>Nome</h3>
+                <p class="transp-nome">{{NFe.infNFe.transp.transporta.xNome}}</p>
+            </td>
+            <td colspan="2">
+                <h3>Frete por conta</h3>
+                <p><strong>0</strong> {{ shipping_cost_owner }}</p>
+            </td>
+            <td colspan="2">
+                <h3>Código ANTT</h3>
+                <p>&nbsp;</p>
+            </td>
+            {% if NFe.infNFe.transp.veicTransp %}
+            <td colspan="2">
+                <h3>Placa do veículo</h3>
+                <p>{{NFe.infNFe.transp.veicTransp.placa}}</p>
+            </td>
+            <td colspan="1">
+                <h3>UF</h3>
+                <p>{{NFe.infNFe.transp.veicTransp.UF}}</p>
+            </td>
+            {% endif %}
+            <td colspan="2">
+                <h3>CNPJ / CPF</h3>
+                <p>{{NFe.infNFe.transp.transporta.CNPJ}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7">
+                <h3>Endereço</h3>
+                <p>{{NFe.infNFe.transp.transporta.xEnder}}</p>
+            </td>
+            <td colspan="2">
+                <h3>Município</h3>
+                <p>{{NFe.infNFe.transp.transporta.xMun}}</p>
+            </td>
+            <td colspan="1">
+                <h3>UF</h3>
+                <p>{{NFe.infNFe.transp.transporta.UF}}</p>
+            </td>
+            <td colspan="2">
+                <h3>Inscrição Estadual</h3>
+                <p>{{NFe.infNFe.transp.transporta.IE}}</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h3>Quantidade</h3>
+                <p>{{ NFe.infNFe.transp.vol.qVol }}</p>
+            </td>
+            <td colspan="2">
+                <h3>Espécie</h3>
+                <p>{{ NFe.infNFe.transp.vol.esp }}</p>
+            </td>
+            <td colspan="2">
+                <h3>Marca</h3>
+                <p>&nbsp;</p>
+            </td>
+            <td colspan="2">
+                <h3>Numeração</h3>
+                <p>&nbsp;</p>
+            </td>
+            <td colspan="2">
+                <h3>Peso bruto</h3>
+                <p id="peso-bruto">{{ NFe.infNFe.transp.vol.pesoB }}</p>
+            </td>
+            <td colspan="2">
+                <h3>Peso líquido</h3>
+                <p id="peso-liquido">{{ NFe.infNFe.transp.vol.pesoL}}</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div id="products-invoice"></div>
+    <br>
+
+    <h2>Dados adicionais</h2>
+    <table class="border-opened padding-high margin-bottom-medium paragraph-bold">
+        <tbody>
+        <tr style="height: 20mm;">
+            <td width="50%">
+                <h3>Informações complementares</h3>
+                <p style="white-space: normal">{{ NFe.infNFe.infAdic.infCpl|safe }}</p>
+            </td>
+            <td width="50%">
+                <h3>Reservado ao fisco</h3>
+                <p>&nbsp;</p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <p>Impresso em <strong></strong></p>
+
+</div>
+</body>
+</html>
